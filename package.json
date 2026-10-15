@@ -1,0 +1,14 @@
+{
+  "name": "emotionai-embedding-service",
+  "version": "1.0.0",
+  "description": "Standalone high-performance local neural embedding microservice using Xenova Transformers",
+  "type": "module",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs"
+  },
+  "dependencies": {
+    "@xenova/transformers": "^2.17.2"
+  }
+}
