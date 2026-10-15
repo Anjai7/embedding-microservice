@@ -26,9 +26,13 @@ const server = http.createServer(async (req, res) => {
 
   const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
 
-  // GET /health
-  if (req.method === "GET" && url.pathname === "/health") {
+  // GET or HEAD /health or / (for uptime monitors and pingers)
+  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/health" || url.pathname === "/")) {
     res.writeHead(200, { "Content-Type": "application/json" });
+    if (req.method === "HEAD") {
+      res.end();
+      return;
+    }
     res.end(
       JSON.stringify({
         status: "ok",
